@@ -1,0 +1,43 @@
+body{
+    background-color: rgb(0, 0, 0) !important;
+}
+.card{
+    width: 18em;
+    margin: 10px;
+    max-height:40rem;
+    padding-bottom: -10px;
+}
+nav{
+    background-color: black !important;
+    border-bottom: 4px solid red;
+}
+/* Style du bouton */
+.neon-button {
+    background-color: #00ff0081 !important; /* Couleur néon verte */
+    color: #fff !important; /* Couleur du texte (blanc) */
+    border: none !important; /* Supprime la bordure */
+    padding: 10px 20px !important; /* Espacement intérieur */
+    font-size: 16px !important; /* Taille de la police */
+    border-radius: 5px !important; /* Coins arrondis */
+    cursor: pointer !important; /* Curseur pointeur au survol */
+    text-align: center !important; /* Alignement du texte au centre */
+    text-decoration: none !important; /* Supprime les décorations de texte par défaut */
+    display: inline-block !important; /* Affichage en tant que bloc en ligne */
+    transition: background-color 0.3s ease !important; /* Transition de couleur au survol */
+  }
+  
+  /* Style du bouton au survol */
+  .neon-button:hover {
+    background-color: #33ff33ca !important; /* Couleur néon verte légèrement plus claire */
+  }
+  
+#btn_burger{
+
+    background-color:  red !important;
+}
+
+footer{
+
+    padding-bottom: 20px !important;
+    border-top: 4px solid red !important;
+}
