@@ -1,9 +1,10 @@
 
 let acceuil_block = document.getElementById('acceuil_block');
+let carousel_block = document.getElementById("carousel");
+
 document.getElementById("year").textContent = new Date().getFullYear() + " Oumaro / MacSerie9";
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjhmMWUxM2VjYTc5OWQxMmVmNmNjZWViZjVjNjQ5MyIsInN1YiI6IjY0ZTBlNTE0MzcxMDk3MDEzOTQ4ZTM1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y_sZyDJi2cnH15uAdvP_VZDKBf0z9Kqa6zEqkh0PhfM';
-const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-US&page=1&sort_by=popularity.desc';
 
 
 const headers = {
@@ -11,46 +12,99 @@ const headers = {
     'accept': 'application/json'
 };
 
-fetch(url, { method: 'GET', headers })
-    .then(response => response.json())
-    .then(data => {
-        // Le résultat de la requête est dans la variable data
-        const results = data.results;
+function dateFormatFr(date) { //convertit les dates en date française
 
-        // Parcours des données et affichage des identifiants (id) de chaque élément
-        for (let i = 0; i < results.length; i++) {
+    let dateString = date;
+    let dateParts = dateString.split("-");
+    let year = dateParts[0];
+    let month = dateParts[1];
+    let day = dateParts[2];
 
-            // Date à formater
-            let dateString = results[i].release_date;
-            let dateParts = dateString.split("-");
-            let year = dateParts[0];
-            let month = dateParts[1];
-            let day = dateParts[2];
+    // Tableaux des noms des mois en français
+    const moisEnFrancais = [
+        "janvier", "février", "mars", "avril", "mai", "juin",
+        "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+    ];
 
-            // Tableaux des noms des mois en français
-            const moisEnFrancais = [
-                "janvier", "février", "mars", "avril", "mai", "juin",
-                "juillet", "août", "septembre", "octobre", "novembre", "décembre"
-            ];
+    let dateFrancaise = `${day} ${moisEnFrancais[month - 1]} ${year}`;
 
-            let dateFrancaise = `${day} ${moisEnFrancais[month - 1]} ${year}`;
 
-            let card = document.createElement('div');
-            card.classList.add('card'); // Remplacez 'my-card-class' par le nom de classe souhaité
+    return dateFrancaise;
+}
+function filmPopulaire() {
+    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-US&page=1&sort_by=popularity.desc';
 
-            card.innerHTML = `
-      <img src="${IMG_URL + results[i].poster_path}" class="card-img-top" alt="...">    
-      <div class="card-body" style="background-color: rgb(214, 214, 214) !important">
-        <p class="card-text" style="font-weight:bold">${results[i].title}</p>
-        <p>${dateFrancaise}</p>
-        <p class="ml-2">⭐️ ${results[i].vote_average}</p>
-      </div>
-    </div> `
+    fetch(url, { method: 'GET', headers })
+        .then(response => response.json())
+        .then(data => {
+            // Le résultat de la requête est dans la variable data
+            const results = data.results;
 
-            acceuil_block.append(card)
-        }
-    })
-    .catch(error => {
-        console.error(error);
-    });
+            // Parcours des données et affichage des identifiants (id) de chaque élément
+            for (let i = 0; i < results.length; i++) {
 
+                let date = dateFormatFr(results[i].release_date)
+
+                let card = document.createElement('div');
+                card.classList.add('card');
+
+                card.innerHTML = `
+          <img src="${IMG_URL + results[i].poster_path}" class="card-img-top" alt="...">    
+          <div class="card-body" style="background-color: rgb(214, 214, 214) !important">
+            <p class="card-text" style="font-weight:bold">${results[i].title}</p>
+            <p>${date}</p>
+            <p class="ml-2 bg-white p-sm-2">⭐️ ${results[i].vote_average}</p>
+          </div>
+        </div> `
+
+                acceuil_block.append(card)
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+/******************
+ * ******************
+ * ******************
+ * 
+ */
+
+function filmNote() {
+    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=fr-FR&page=2&sort_by=vote_average.desc'
+
+    fetch(url, { method: 'GET', headers })
+        .then(response => response.json())
+        .then(data => {
+            // Le résultat de la requête est dans la variable data
+            const results = data.results;
+
+            // Parcours des données et affichage des identifiants (id) de chaque élément
+            for (let i = 10; i < results.length; i++) {
+                //console.log(results[i]);
+                //let date = dateFormatFr(results[i].release_date);
+
+                let carousel_item = document.createElement('div');
+
+                carousel_item.classList.add('carousel-item'); //
+
+
+                carousel_item.innerHTML = `<img src="${IMG_URL + results[i].poster_path}" class="d-block w-100" alt="...">`;
+
+                // console.log(carousel_item);
+
+                carousel_block.appendChild(carousel_item);
+
+
+
+            }
+            console.log(carousel_block);
+        })
+
+}
+
+//APPEL DES FONCTIONS
+
+filmPopulaire();
+filmNote()

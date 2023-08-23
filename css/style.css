@@ -41,3 +41,9 @@ footer{
     padding-bottom: 20px !important;
     border-top: 4px solid red !important;
 }
+
+article{
+
+    height: 300px;
+    background-color: white;
+}
