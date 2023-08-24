@@ -1,5 +1,10 @@
 body{
     background-color: rgb(0, 0, 0) !important;
+    position: relative !important;
+}
+
+main{
+    margin-bottom: 200px;
 }
 .card{
     width: 18em;
@@ -7,43 +12,58 @@ body{
     max-height:40rem;
     padding-bottom: -10px;
 }
-nav{
+#nav{
     background-color: black !important;
     border-bottom: 4px solid red;
-}
-/* Style du bouton */
-.neon-button {
-    background-color: #00ff0081 !important; /* Couleur néon verte */
-    color: #fff !important; /* Couleur du texte (blanc) */
-    border: none !important; /* Supprime la bordure */
-    padding: 10px 20px !important; /* Espacement intérieur */
-    font-size: 16px !important; /* Taille de la police */
-    border-radius: 5px !important; /* Coins arrondis */
-    cursor: pointer !important; /* Curseur pointeur au survol */
-    text-align: center !important; /* Alignement du texte au centre */
-    text-decoration: none !important; /* Supprime les décorations de texte par défaut */
-    display: inline-block !important; /* Affichage en tant que bloc en ligne */
-    transition: background-color 0.3s ease !important; /* Transition de couleur au survol */
-  }
-  
-  /* Style du bouton au survol */
-  .neon-button:hover {
-    background-color: #33ff33ca !important; /* Couleur néon verte légèrement plus claire */
-  }
-  
-#btn_burger{
-
-    background-color:  red !important;
+    border-top: 4px solid red;
+    position: fixed !important;
+    z-index: 1 !important;
+    bottom: 0px !important;
+    left: 0;
+    right: 0;
 }
 
-footer{
 
-    padding-bottom: 20px !important;
-    border-top: 4px solid red !important;
+.nav-item{
+
+    font-size: 40px !important;
+    margin: 0px 20px;
+    will-change: transform;
+    position: relative;
+    list-style-type: none !important;
 }
 
+.nav-item:hover{
+
+    transform: scale(1.2);
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    transform: translate(0px,-50px);
+    width: 100%; /* Ajoutez ceci si vous souhaitez conserver la largeur */
+    height: 80%; /* Ajoutez ceci si vous souhaitez conserver la hauteur */
+}
+
+.nav-item:hover::after {
+    background-color: red;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+
+.tmdb_logo{
+    width: 7rem;
+}
+
+#text_copy > p {
+
+font-size: 10px;
+}
 article{
 
-    height: 300px;
+    height: 750px;
     background-color: white;
 }
+

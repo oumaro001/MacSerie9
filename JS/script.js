@@ -1,6 +1,7 @@
 
 let acceuil_block = document.getElementById('acceuil_block');
-let carousel_block = document.getElementById("carousel");
+const carouselInner = document.querySelector('.carousel-inner');
+
 
 document.getElementById("year").textContent = new Date().getFullYear() + " Oumaro / MacSerie9";
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
@@ -80,27 +81,23 @@ function filmNote() {
             // Le résultat de la requête est dans la variable data
             const results = data.results;
 
-            // Parcours des données et affichage des identifiants (id) de chaque élément
-            for (let i = 10; i < results.length; i++) {
-                //console.log(results[i]);
-                //let date = dateFormatFr(results[i].release_date);
-
-                let carousel_item = document.createElement('div');
-
-                carousel_item.classList.add('carousel-item'); //
-
-
-                carousel_item.innerHTML = `<img src="${IMG_URL + results[i].poster_path}" class="d-block w-100" alt="...">`;
-
-                // console.log(carousel_item);
-
-                carousel_block.appendChild(carousel_item);
-
-
-
-            }
-            console.log(carousel_block);
-        })
+            results.forEach((image, index) => {
+                const item = document.createElement('div');
+                item.classList.add('carousel-item');
+                if (index === 0) {
+                    item.classList.add('active');
+                }
+    
+                const img = document.createElement('img');
+                img.src = IMG_URL + image.poster_path;
+                img.classList.add('d-block', 'w-100');
+    
+                item.appendChild(img);
+                carouselInner.appendChild(item);
+            });
+        
+            
+       })
 
 }
 
