@@ -147,13 +147,12 @@ function filmNote() {
 
                     let block = document.createElement('div');
                     block.classList.add('description_film');
-                    block.innerHTML = `<p>${film.original_title}</p>
-                                        <p>⭐️ ${film.vote_average}</p>`;
+                    block.innerHTML = `<p>${film.original_title} </p>
+                                        <p> ⭐️ ${film.vote_average}</p>`;
 
 
                                         block_img.appendChild(block);
                                        block_img.appendChild(img);
-                    https://image.tmdb.org/t/p/w500/3ZCfSSxZ2e4Kiwu3Y9dvfT5n1m6.jpg
 
                                        // img.appendChild(block)
                                         //content.appendChild(img);

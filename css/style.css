@@ -73,6 +73,7 @@ article{
     /* width: 300px;  Ajustez la largeur selon vos besoins */
     height: 100%; /* Ajustez la hauteur selon vos besoins */
     overflow: hidden;
+    overflow-x: scroll;
     position: relative;
 }
 
@@ -87,15 +88,15 @@ article{
 
 .content > img {
     
-    z-index: 0;
     margin: 0 -100px;
 }
 .description_film{
     
     background-color: rgb(255, 255, 255, .7);
-    z-index: 0;
     position: absolute;
-    width: 25%;
+    max-width: 100%;
+    display: flex;
+    flex-flow: wrap;
     padding: 0 10px;
     height: 10%;
    
