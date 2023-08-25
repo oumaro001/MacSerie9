@@ -73,7 +73,7 @@ article{
     /* width: 300px;  Ajustez la largeur selon vos besoins */
     height: 100%; /* Ajustez la hauteur selon vos besoins */
     overflow: hidden;
-    /* overflow-x: scroll;*/
+     overflow-x: scroll;
     position: relative;
 }
 
