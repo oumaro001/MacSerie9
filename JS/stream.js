@@ -29,8 +29,8 @@ fetch(url, { method: 'GET', headers })
 
             const texteSansEspace = chaine.provider_name.replace(/\s/g, '');
     
-           cardBody.innerHTML = ` <a href="https://www.${texteSansEspace}.com/" target="_blank"><img src="${IMG_URL + chaine.logo_path}" alt="..." style="max-width:10em;"></a>
-                                <p class="text-white">${chaine.provider_name}</p>`;
+           cardBody.innerHTML = ` <div><a href="https://www.${texteSansEspace}.com/" target="_blank"><img src="${IMG_URL + chaine.logo_path}" alt="..." id="img_logo"></a>
+                                <p class="text-white">${chaine.provider_name}</p></div>`;
 
 
            section_chaine.appendChild(cardBody)
