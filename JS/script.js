@@ -2,6 +2,33 @@
 let acceuil_block = document.getElementById('acceuil_block');
 const carouselInner = document.querySelector('.carousel-inner');
 
+const scrollContainer = document.getElementById('scrollContainer');
+                const content = document.querySelector('.content');
+                
+                let isScrolling = false;
+                let startX, scrollLeft;
+                
+                scrollContainer.addEventListener('mousedown', (e) => {
+                    isScrolling = true;
+                    startX = e.pageX - scrollContainer.offsetLeft;
+                    scrollLeft = scrollContainer.scrollLeft;
+                });
+                
+                scrollContainer.addEventListener('mouseleave', () => {
+                    isScrolling = false;
+                });
+                
+                scrollContainer.addEventListener('mouseup', () => {
+                    isScrolling = false;
+                });
+                
+                scrollContainer.addEventListener('mousemove', (e) => {
+                    if (!isScrolling) return;
+                    e.preventDefault();
+                    const x = e.pageX - scrollContainer.offsetLeft;
+                    const walk = (x - startX) * 3; // Ajustez la valeur de multiplication pour un défilement plus rapide ou plus lent
+                    scrollContainer.scrollLeft = scrollLeft - walk;
+                });
 
 document.getElementById("year").textContent = new Date().getFullYear() + " Oumaro / MacSerie9";
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
@@ -73,33 +100,81 @@ function filmPopulaire() {
  */
 
 function filmNote() {
-    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&language=fr-FR&page=2&sort_by=vote_average.desc'
-
+    const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-FR&page=1&sort_by=popularity.desc&vote_average.gte=8&vote_average.lte=10';
     fetch(url, { method: 'GET', headers })
         .then(response => response.json())
         .then(data => {
             // Le résultat de la requête est dans la variable data
             const results = data.results;
 
-            results.forEach((image, index) => {
-                const item = document.createElement('div');
-                item.classList.add('carousel-item');
-                if (index === 0) {
-                    item.classList.add('active');
-                }
-    
-                const img = document.createElement('img');
-                img.src = IMG_URL + image.poster_path;
-                img.classList.add('d-block', 'w-100');
-    
-                item.appendChild(img);
-                carouselInner.appendChild(item);
-            });
-        
-            
-       })
+            results.forEach((film, index) => {
+
+             /*   if (film.poster_path !== null) {
+
+                    const item = document.createElement('div');
+                    item.classList.add('carousel-item');
+                    if (index === 0) {
+                        item.classList.add('active');
+                    }
+
+                    const img = document.createElement('img');
+                    img.src = IMG_URL + film.poster_path;
+                    img.classList.add('d-block', 'w-100');
+
+                    let block = document.createElement('div');
+                    block.classList.add('description_film');
+                    block.innerHTML = `<p>${film.original_title}</p>
+                                        <p>${film.vote_average}`;
+
+
+                    item.appendChild(img);
+                    item.appendChild(block);
+                    carouselInner.appendChild(item);
+
+
+                }; */
+                
+                
+                if (film.poster_path !== null) {
+
+                    let block_img = document.createElement('div');
+                     block_img.classList.add('image-container');
+
+
+                    const img = document.createElement('img');
+                    img.src = IMG_URL + film.poster_path;
+                   // img.classList.add('d-block', 'w-100');
+
+                    let block = document.createElement('div');
+                    block.classList.add('description_film');
+                    block.innerHTML = `<p>${film.original_title}</p>
+                                        <p>⭐️ ${film.vote_average}</p>`;
+
+
+                                        block_img.appendChild(block);
+                                       block_img.appendChild(img);
+                    https://image.tmdb.org/t/p/w500/3ZCfSSxZ2e4Kiwu3Y9dvfT5n1m6.jpg
+
+                                       // img.appendChild(block)
+                                        //content.appendChild(img);
+                                        //content.appendChild(block)
+                                        content.appendChild(block_img);
+
+
+                };
+
+
+            }
+
+
+            )
+
+
+        })
 
 }
+
+
 
 //APPEL DES FONCTIONS
 

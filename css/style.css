@@ -67,3 +67,40 @@ article{
     background-color: white;
 }
 
+
+/* Styles pour le conteneur de défilement */
+.scroll-container {
+    /* width: 300px;  Ajustez la largeur selon vos besoins */
+    height: 100%; /* Ajustez la hauteur selon vos besoins */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Styles pour le contenu à faire défiler */
+.content {
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+    display: flex;
+    position: relative;
+}
+
+.content > img {
+    
+    z-index: 0;
+    margin: 0 -100px;
+}
+.description_film{
+    
+    background-color: rgb(255, 255, 255, .7);
+    z-index: 0;
+    position: absolute;
+    width: 25%;
+    padding: 0 10px;
+    height: 10%;
+   
+    
+
+}
+
+/* Autres styles CSS selon vos besoins */
