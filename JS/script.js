@@ -83,7 +83,7 @@ function filmPopulaire() {
             <p>${date}</p>
             <p class="ml-2 bg-white p-sm-2">⭐️ ${results[i].vote_average}</p>
           </div>
-        </div> `
+        </div> `;
 
                 acceuil_block.append(card)
             }
