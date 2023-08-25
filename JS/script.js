@@ -147,8 +147,8 @@ function filmNote() {
 
                     let block = document.createElement('div');
                     block.classList.add('description_film');
-                    block.innerHTML = `<p>${film.original_title} </p>
-                                        <p> ⭐️ ${film.vote_average}</p>`;
+                    block.innerHTML = `<p>${film.original_title}</p>
+                                        <p>⭐️ ${film.vote_average}</p>`;
 
 
                                         block_img.appendChild(block);
