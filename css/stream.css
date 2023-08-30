@@ -329,9 +329,9 @@ font-size: 10px;
     flex-flow: wrap;
 }
 
-.card-body:hover{
+.card-body >img:hover{
 
-    transform: scale(1.2);
+    border: 1px sold red;
 }
 
 #img_logo{
@@ -352,7 +352,7 @@ font-size: 10px;
     #section_chaine{
 
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         flex-flow: wrap;
         width: 100%;
         margin: 40px 0px;
@@ -367,4 +367,23 @@ footer{
 
    border-top: 2px solid red;
    padding: 50px 0px;
+}
+
+.card{
+
+   max-width: 15em;
+   display: flex;
+   justify-content: center;
+}
+
+.card img:hover{
+
+   transition: all 1400ms;
+   border: 2px solid red;
+   box-shadow: 10px 10px 10px rgba(241, 38, 38, 0.5);
+}
+
+.card:not(:hover){
+   transition: all 1400ms;
+
 }

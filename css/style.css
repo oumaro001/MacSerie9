@@ -6,6 +6,10 @@ body{
 main{
     margin-bottom: 200px;
 }
+
+h1, h2{
+   font-size: 3em !important;
+}
 .card{
     width: 18em;
     margin: 10px;
@@ -19,6 +23,21 @@ main{
    max-height: 32em;
 
 }
+
+.card_populaire:hover{
+
+   transform: scale(1.2);
+   transition: all 1400ms;
+   border: 2px solid red;
+   box-shadow: 10px 10px 10px rgba(241, 38, 38, 0.5); /* Ajustez les valeurs pour l'ombre souhaitée */
+
+}
+
+.card_populaire:not(:hover){
+   transition: all 1400ms;
+
+}
+
 /*#nav{
     background-color: black !important;
     border-bottom: 4px solid red;
@@ -481,4 +500,30 @@ div#carousel {
    line-height: 0; }
  div#carousel ~ span:hover { color: #888; cursor: pointer; }
 
+
+footer{
+
+   border-top: 2px solid red;
+   padding: 20px 0px;
+}
+
+.img_note{
+
+   max-width: 16em;
+  
+}
+
+.img_note:hover{
+   transform: scale(1.2);
+   z-index: 1;
+   transition: all 1400ms;
+   border: 2px solid red;
+   box-shadow: 10px 10px 10px rgba(241, 38, 38, 0.5); /* Ajustez les valeurs pour l'ombre souhaitée */
+
+}
+
+.img_note:not(:hover){
+   transition: all 1400ms;
+
+}
 

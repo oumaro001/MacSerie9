@@ -117,6 +117,7 @@ function filmNote() {
 
 
                     const img = document.createElement('img');
+                    img.classList.add('img_note');
                     img.src = IMG_URL + film.poster_path;
 
 
