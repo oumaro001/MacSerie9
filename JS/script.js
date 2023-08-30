@@ -1,5 +1,6 @@
 
 let acceuil_block = document.getElementById('acceuil_block');
+let block_tv = document.getElementById('block_tv');
 const carouselInner = document.querySelector('.carousel-inner');
 
 const scrollContainer = document.getElementById('scrollContainer');
@@ -74,7 +75,7 @@ function filmPopulaire() {
                 let date = dateFormatFr(results[i].release_date)
 
                 let card = document.createElement('div');
-                card.classList.add('card');
+                card.classList.add('card','card_populaire');
 
                 card.innerHTML = `
           <img src="${IMG_URL + results[i].poster_path}" class="card-img-top" alt="...">    
@@ -109,32 +110,6 @@ function filmNote() {
 
             results.forEach((film, index) => {
 
-             /*   if (film.poster_path !== null) {
-
-                    const item = document.createElement('div');
-                    item.classList.add('carousel-item');
-                    if (index === 0) {
-                        item.classList.add('active');
-                    }
-
-                    const img = document.createElement('img');
-                    img.src = IMG_URL + film.poster_path;
-                    img.classList.add('d-block', 'w-100');
-
-                    let block = document.createElement('div');
-                    block.classList.add('description_film');
-                    block.innerHTML = `<p>${film.original_title}</p>
-                                        <p>${film.vote_average}`;
-
-
-                    item.appendChild(img);
-                    item.appendChild(block);
-                    carouselInner.appendChild(item);
-
-
-                }; */
-                
-                
                 if (film.poster_path !== null) {
 
                     let block_img = document.createElement('div');
@@ -143,7 +118,7 @@ function filmNote() {
 
                     const img = document.createElement('img');
                     img.src = IMG_URL + film.poster_path;
-                   // img.classList.add('d-block', 'w-100');
+
 
                     let block = document.createElement('div');
                     block.classList.add('description_film');
@@ -153,10 +128,6 @@ function filmNote() {
 
                                         block_img.appendChild(block);
                                        block_img.appendChild(img);
-
-                                       // img.appendChild(block)
-                                        //content.appendChild(img);
-                                        //content.appendChild(block)
                                         content.appendChild(block_img);
 
 
@@ -172,10 +143,44 @@ function filmNote() {
         })
 
 }
+function getTvShow(){
+    const url = "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=fr-FR&page=1&sort_by=popularity.desc&with_original_language=fr";
+    fetch(url, { method: 'GET', headers })
+        .then(response => response.json())
+        .then(data => {
+
+            const results = data.results;
+
+            results.forEach((film, index) => {
+
+              let date =  dateFormatFr(film.first_air_date)
+
+                if (film.poster_path !== null){
+                
+                    let card = document.createElement('div');
+                    card.classList.add('card','text-bg-dark','card_tv');
+
+                    card.innerHTML =`
+                      <img src="${IMG_URL + film.poster_path}" class="card-img" alt="...">
+                      <div class="card-img-overlay" id="desc_card_tv">
+                        <h5 class="card-title">${film.original_name}</h5>
+                        <p >⭐️ ${film.vote_average}</p>
+                        <p class="card-text"><small class="text-body-white">${date}</small></p>
+                    </div>
+                    `;
+
+                block_tv.appendChild(card);
+                //<p class="card-text d-flex flex-wrap">${film.overview}.</p>
 
 
+                }
+            })
+})
+    
+}
 
 //APPEL DES FONCTIONS
 
 filmPopulaire();
 filmNote()
+getTvShow();
