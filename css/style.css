@@ -26,7 +26,7 @@ h1, h2{
 
 .card_populaire:hover{
 
-   transform: scale(1.2);
+   transform: scale(1.1);
    transition: all 1400ms;
    border: 2px solid red;
    box-shadow: 10px 10px 10px rgba(241, 38, 38, 0.5); /* Ajustez les valeurs pour l'ombre souhaitée */
