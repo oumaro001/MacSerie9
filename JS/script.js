@@ -123,12 +123,12 @@ function filmNote() {
 
                     let block = document.createElement('div');
                     block.classList.add('description_film');
-                    block.innerHTML = `<p>${film.original_title}</p>
+                    block.innerHTML = `
                                         <p>⭐️ ${film.vote_average}</p>`;
 
 
                                         block_img.appendChild(block);
-                                       block_img.appendChild(img);
+                                        block_img.appendChild(img);
                                         content.appendChild(block_img);
 
 

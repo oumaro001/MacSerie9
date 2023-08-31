@@ -3,7 +3,7 @@ let section_chaine = document.getElementById('section_chaine');
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjhmMWUxM2VjYTc5OWQxMmVmNmNjZWViZjVjNjQ5MyIsInN1YiI6IjY0ZTBlNTE0MzcxMDk3MDEzOTQ4ZTM1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y_sZyDJi2cnH15uAdvP_VZDKBf0z9Kqa6zEqkh0PhfM';
-const url = 'https://api.themoviedb.org/3/watch/providers/tv?language=fr-FR';
+const url = 'https://api.themoviedb.org/3/watch/providers/tv?language=fr-FR&watch_region=fr';
 
 const headers = {
     'Authorization': `Bearer ${apiKey}`,
@@ -25,13 +25,13 @@ fetch(url, { method: 'GET', headers })
     
             // Création du corps de la carte (card-body)
             const cardBody = document.createElement('div');
-            cardBody.classList.add('card',);
+            cardBody.classList.add('card','bg-secondary');
             ///cardBody.style = 'margin:0% 23%; width:100%'
 
             const texteSansEspace = chaine.provider_name.replace(/\s/g, '');
     
            cardBody.innerHTML = ` <div class="card-body"><a href="https://www.${texteSansEspace}.com/" target="_blank"><img src="${IMG_URL + chaine.logo_path}" alt="..." id="img_logo"></a>
-                                <p>${chaine.provider_name}</p></div>`;
+                                <p class="text-white">${chaine.provider_name}</p></div>`;
 
 
            section_chaine.appendChild(cardBody)

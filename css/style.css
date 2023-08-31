@@ -394,7 +394,7 @@ font-size: 10px;
 article{
 
     height: 40em !important;
-    background-color: rgb(255, 255, 255, .1);
+    background-color: rgba(253, 60, 60, 0.865);
     
 }
 
@@ -417,20 +417,16 @@ article{
     position: relative;
 }
 
-.description_film +img {
-    
-    max-height: 30em !important;
-}
 .description_film{
     
     background-color: rgb(255, 255, 255, .7);
-    position: absolute;
-    max-width: 30rem;
+    max-width: 30%;
     padding: 0 10px;
     max-height: 5rem;
     display: flex;
     flex-flow: wrap column;
-    
+    z-index: 1;
+    transform: translate(1px,40px);
    
     
 
@@ -509,21 +505,9 @@ footer{
 
 .img_note{
 
-   max-width: 16em;
+   max-width: 16.7em;
   
 }
 
-.img_note:hover{
-   transform: scale(1.2);
-   z-index: 1;
-   transition: all 1400ms;
-   border: 2px solid red;
-   box-shadow: 10px 10px 10px rgba(241, 38, 38, 0.5); /* Ajustez les valeurs pour l'ombre souhaitée */
 
-}
-
-.img_note:not(:hover){
-   transition: all 1400ms;
-
-}
 
