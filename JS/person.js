@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 results.forEach((actor, index) => {
 
+                    if(actor.profile_path !== null){
+
                     const filmActor = actor.known_for;
 
                     //Création de la carte (card)
@@ -48,9 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
            <div class="card-body">
              <h5 class="card-title">${actor.original_name}</h5>
              <h6 class="text-danger m-2">Film populaire</h6>
-            <div class="d-flex flex-wrap justify-content-center">
+            <div class="d-flex flex-wrap justify-content-center text-white">
             ${filmActor.map(movie => `
-            <div class="ms-2"><img src="${IMG_URL +movie.poster_path}" style="max-width:6em;border:1px solid red"></div>`)}
+            <div class="m-2"><img src="${IMG_URL +movie.poster_path}" style="max-width:6em;border:1px solid red"></div>`
+            )}
+            
             </div>
            </div>
          </div> `;
@@ -61,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     block_actor.appendChild(card);
 
 
-                }
+                     } }
                 );
 
 
@@ -72,6 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+// <div class="m-2"><img src="${IMG_URL +movie.poster_path}" style="max-width:6em;border:1px solid red"></div>`
 
 
 
