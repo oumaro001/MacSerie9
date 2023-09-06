@@ -135,6 +135,7 @@ main{
 #text_copy > p {
 
 font-size: 10px;
+
 }
 
 
@@ -144,7 +145,32 @@ footer{
    padding: 35px 0px;
 }
 
-.card_actor{
+.card_film{
 
-   width: 40% !important;
+  margin: 30px 80px !important;
+  object-fit: cover;
+  overflow: hidden;
+  
+
 }
+
+#img_card img{
+
+  max-width: 90%;
+
+}
+
+#img_card{
+  
+  border: 3px solid rgb(199, 199, 199);
+  border-radius: 5px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
+  height: 100%;
+  background-color: rgba(198, 196, 196, 0.7);
+
+  
+}
+

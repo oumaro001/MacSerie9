@@ -12,7 +12,7 @@ h1, h2{
 }
 .card{
     width: 18em;
-    margin: 10px;
+    margin: 20px;
     max-height:40rem;
     padding-bottom: -10px;
 }
@@ -26,11 +26,10 @@ h1, h2{
 
 .card_populaire:hover{
 
-   transform: scale(1.1);
    transition: all 1400ms;
    border: 2px solid red;
    box-shadow: 10px 10px 10px rgba(241, 38, 38, 0.5); /* Ajustez les valeurs pour l'ombre souhaitée */
-
+   
 }
 
 .card_populaire:not(:hover){
@@ -210,7 +209,9 @@ font-size: 10px;
 article{
 
     height: 40em !important;
-    background-color: rgb(70, 70, 70)
+    background-color: rgb(230, 230, 230);
+    margin: 0 20px;
+    border-radius: 20px;
     
 }
 
@@ -244,20 +245,22 @@ article{
     z-index: 1;
     color: white;
     transform: translate(1px,40px);
-   
+   border-radius: 10px;
+   margin-left: 2px;
+   margin-top: 2px;
     
 
 }
 
 #desc_card_tv{
 
-   background-color: rgba(255, 91, 91, 0.949);
+   background-color: rgba(201, 0, 0, 0.949);
    opacity: 0;
 }
 
 #desc_card_tv:hover{
 
-   opacity: 0.8;
+   opacity: 1;
    
 
 }
@@ -323,6 +326,9 @@ footer{
 .img_note{
 
    max-width: 16.7em;
+   margin: 0 3px;
+   border-radius: 20px;
+   max-height: 100%;
   
 }
 

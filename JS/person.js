@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     if(actor.profile_path !== null){
 
+
                     const filmActor = actor.known_for;
 
                     //Création de la carte (card)
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     block_actor.appendChild(card);
 
 
-                     } }
+                    }}
                 );
 
 
