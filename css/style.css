@@ -237,6 +237,7 @@ article{
 .description_film{
     
     background-color: rgb(255, 40, 40);
+    border: 2px solid white;
     max-width: 30%;
     padding: 0 10px;
     max-height: 5rem;
