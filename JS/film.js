@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 results.forEach((film, index) => {
 
-                    if (film.profile_path !== null) {
+                    if (film.poster_path !== null) {
 
                         let date = dateFormatFr(film.release_date);
 
