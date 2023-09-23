@@ -1,35 +1,43 @@
 
-let acceuil_block = document.getElementById('acceuil_block');
+let slider_carousel = document.querySelector('.carrousel');
 let block_tv = document.getElementById('block_tv');
-const carouselInner = document.querySelector('.carousel-inner');
+let film_populaire = document.getElementById('film_populaire');
 
+/***************************************************** */
+/********************** Carousel meilleur vote ******************************* */
+/***************************************************** */
+
+const carouselInner = document.querySelector('.carousel-inner');
 const scrollContainer = document.getElementById('scrollContainer');
-                const content = document.querySelector('.content');
-                
-                let isScrolling = false;
-                let startX, scrollLeft;
-                
-                scrollContainer.addEventListener('mousedown', (e) => {
-                    isScrolling = true;
-                    startX = e.pageX - scrollContainer.offsetLeft;
-                    scrollLeft = scrollContainer.scrollLeft;
-                });
-                
-                scrollContainer.addEventListener('mouseleave', () => {
-                    isScrolling = false;
-                });
-                
-                scrollContainer.addEventListener('mouseup', () => {
-                    isScrolling = false;
-                });
-                
-                scrollContainer.addEventListener('mousemove', (e) => {
-                    if (!isScrolling) return;
-                    e.preventDefault();
-                    const x = e.pageX - scrollContainer.offsetLeft;
-                    const walk = (x - startX) * 3; // Ajustez la valeur de multiplication pour un défilement plus rapide ou plus lent
-                    scrollContainer.scrollLeft = scrollLeft - walk;
-                });
+const content = document.querySelector('.content');
+
+let isScrolling = false;
+let startX, scrollLeft;
+
+scrollContainer.addEventListener('mousedown', (e) => {
+    isScrolling = true;
+    startX = e.pageX - scrollContainer.offsetLeft;
+    scrollLeft = scrollContainer.scrollLeft;
+});
+
+scrollContainer.addEventListener('mouseleave', () => {
+    isScrolling = false;
+});
+
+scrollContainer.addEventListener('mouseup', () => {
+    isScrolling = false;
+});
+
+scrollContainer.addEventListener('mousemove', (e) => {
+    if (!isScrolling) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainer.offsetLeft;
+    const walk = (x - startX) * 3; // Ajustez la valeur de multiplication pour un défilement plus rapide ou plus lent
+    scrollContainer.scrollLeft = scrollLeft - walk;
+});
+
+
+
 
 document.getElementById("year").textContent = new Date().getFullYear() + " Oumaro / MacSerie9";
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
@@ -61,6 +69,13 @@ function dateFormatFr(date) { //convertit les dates en date française
     return dateFrancaise;
 }
 function filmPopulaire() {
+
+  var angle = 0;
+  function galleryspin(sign) { 
+  spinner = document.querySelector("#spinner");
+  if (!sign) { angle = angle + 45; } else { angle = angle - 45; }
+  spinner.setAttribute("style","-webkit-transform: rotateY("+ angle +"deg); -moz-transform: rotateY("+ angle +"deg); transform: rotateY("+ angle +"deg);");
+  }
     const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-US&page=1&sort_by=popularity.desc';
 
     fetch(url, { method: 'GET', headers })
@@ -71,23 +86,19 @@ function filmPopulaire() {
 
             // Parcours des données et affichage des identifiants (id) de chaque élément
             for (let i = 0; i < results.length; i++) {
+              let date = dateFormatFr(results[i].release_date);
+          
 
-                let date = dateFormatFr(results[i].release_date)
+              let img = document.createElement('img');
+              img.src = IMG_URL + results[i].poster_path;
+              img.classList.add('img_populaire')
+                console.log(img);
 
-                let card = document.createElement('div');
-                card.classList.add('card','card_populaire');
-
-                card.innerHTML = `
-          <img src="${IMG_URL + results[i].poster_path}" class="card-img-top" alt="...">    
-          <div class="card-body" style="background-color: rgb(214, 214, 214) !important">
-            <p class="card-text" style="font-weight:bold">${results[i].title}</p>
-            <p>${date}</p>
-            <p class="ml-2 bg-white p-sm-2">⭐️ ${results[i].vote_average}</p>
-          </div>
-        </div> `;
-
-                acceuil_block.append(card)
-            }
+                film_populaire.appendChild(img);
+                
+          }
+          
+            
         })
         .catch(error => {
             console.error(error);
@@ -113,7 +124,7 @@ function filmNote() {
                 if (film.poster_path !== null) {
 
                     let block_img = document.createElement('div');
-                     block_img.classList.add('image-container');
+                    block_img.classList.add('image-container');
 
 
                     const img = document.createElement('img');
@@ -127,9 +138,9 @@ function filmNote() {
                                         <p>⭐️ ${film.vote_average}</p>`;
 
 
-                                        block_img.appendChild(block);
-                                        block_img.appendChild(img);
-                                        content.appendChild(block_img);
+                    block_img.appendChild(block);
+                    block_img.appendChild(img);
+                    content.appendChild(block_img);
 
 
                 };
@@ -144,7 +155,7 @@ function filmNote() {
         })
 
 }
-function getTvShow(){
+function getTvShow() {
     const url = "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=fr-FR&page=1&sort_by=popularity.desc&with_original_language=fr";
     fetch(url, { method: 'GET', headers })
         .then(response => response.json())
@@ -154,14 +165,14 @@ function getTvShow(){
 
             results.forEach((film, index) => {
 
-              let date =  dateFormatFr(film.first_air_date)
+                let date = dateFormatFr(film.first_air_date)
 
-                if (film.poster_path !== null){
-                
+                if (film.poster_path !== null) {
+
                     let card = document.createElement('div');
-                    card.classList.add('card','text-bg-dark','card_tv');
+                    card.classList.add('card', 'text-bg-dark');
 
-                    card.innerHTML =`
+                    card.innerHTML = `
                       <img src="${IMG_URL + film.poster_path}" class="card-img" alt="...">
                       <div class="card-img-overlay" id="desc_card_tv">
                         <h5 class="card-title">${film.original_name}</h5>
@@ -170,14 +181,13 @@ function getTvShow(){
                     </div>
                     `;
 
-                block_tv.appendChild(card);
-                //<p class="card-text d-flex flex-wrap">${film.overview}.</p>
-
+                    block_tv.appendChild(card);
+                    //<p class="card-text d-flex flex-wrap">${film.overview}.</p>
 
                 }
             })
-})
-    
+        })
+
 }
 
 //APPEL DES FONCTIONS
@@ -185,3 +195,10 @@ function getTvShow(){
 filmPopulaire();
 filmNote()
 getTvShow();
+
+/*
+
+ <p style="font-weight:bold">${results[i].title}</p>
+    <p>${date}</p>
+    <p class="ml-2 bg-white p-sm-2">⭐️ ${results[i].vote_average}</p>
+*/

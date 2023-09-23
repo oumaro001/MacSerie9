@@ -1,64 +1,125 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link href="./css/style.css" rel="stylesheet" />
   <title>MacSerie9</title>
 </head>
+
 <body>
-  
 
   <main class="w-100">
     <header class="d-flex justify-content-center"><img src="./images/logos.png" style="max-width: 13rem;">
-      <img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" class="tmdb_logo">
+      <img
+        src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+        class="tmdb_logo">
     </header>
+    <nav>
+      <a href="index.html" class="navbar__item -orange">
+        <p>Acceuil</p>
+      </a>
+      <a href="searchFilm.html" class="navbar__item -navy-blue">
+        <p>Film</p>
+      </a>
+      <a href="streamPage.html" class="navbar__item -yellow">
+        <p>Streaming</p>
+      </a>
+      <a href="person.html" class="navbar__item -purple">
+        <p>Acteur</p>
+      </a>
+    </nav>
+
 
     <!--------------------------POPULAIRES--------------------------->
-    <h1 class="text-white ms-2 mt-2">Les films populaires</h1> 
-    <section id="acceuil_block" class="m-2 d-flex justify-content-center flex-wrap">
+    <h1 class="text-white ms-2 mt-2">Les films populaires</h1>
+
+    <section id="film_populaire">
+
     </section>
+
+   
     <!--------------------------LES MIEUX NOTE--------------------------->
     <article class="mt-5 d-flex justify-content-around flex-wrap">
       <h2 class="text-dark mt-5 text-center">Les meilleures notes</h2>
-     
+
       <div class="scroll-container mt-3" id="scrollContainer">
         <!-- Le contenu à faire défiler -->
         <div class="content">
-            <!-- Votre contenu ici -->
+          <!-- Votre contenu ici -->
         </div>
-    </div>
-    
+      </div>
+
     </article>
 
-  <div class="w-100" style="margin-top: 140px;">
-    <h2 class="text-white">Les émissions & séries TV </h2>
-    <div id="block_tv" class="d-flex justify-content-center flex-wrap w-100" style="position: relative;">
+    <div class="w-100" style="margin-top: 200px;">
+      <h2 class="text-white">Les émissions & séries TV </h2>
+      <div id="block_tv"  style="position: relative; overflow: scroll;">
 
-      <div class="ombre-en-bas"></div>
+        <div class="ombre-en-bas"></div>
+      </div>
     </div>
-  </div>
-  
+
+    <!-----
+    <div class="slider" style="margin-top: 200px;">
+      <div class="slide-track">
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="" />
+        </div>
+      </div>
+    </div>
+
+    --->
   </main>
-   <footer>
+  <footer>
     <p class="text-white text-center">&copy; <span id="year"></span></p>
-   </footer>
-   <nav>
-    <a href="index.html" class="navbar__item -orange">
-      <span class="logo_nav" style="font-size: 2em;">🏠</span>
-    </a>
-    <a href="searchFilm.html" class="navbar__item -navy-blue">
-      <span class="logo_nav" style="font-size: 2em;">🔎 </span>
-    </a>
-    <a href="streamPage.html" class="navbar__item -yellow">
-      <span class="logo_nav" style="font-size: 2em;">🖥️ </span>
-    </a>
-    <a href="person.html" class="navbar__item -purple">
-      <span class="logo_nav" style="font-size: 2em;">🦸🏻 </span>
-    </a>
-  </nav>
+  </footer>
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <script src="./JS/script.js"></script>
+
 </html>
