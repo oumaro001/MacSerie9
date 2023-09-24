@@ -3,6 +3,20 @@ let slider_carousel = document.querySelector('.carrousel');
 let block_tv = document.getElementById('block_tv');
 let film_populaire = document.getElementById('film_populaire');
 
+
+
+
+document.getElementById("year").textContent = new Date().getFullYear() + " Oumaro / MacSerie9";
+const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjhmMWUxM2VjYTc5OWQxMmVmNmNjZWViZjVjNjQ5MyIsInN1YiI6IjY0ZTBlNTE0MzcxMDk3MDEzOTQ4ZTM1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y_sZyDJi2cnH15uAdvP_VZDKBf0z9Kqa6zEqkh0PhfM';
+
+
+const headers = {
+    'Authorization': `Bearer ${apiKey}`,
+    'accept': 'application/json'
+};
+
+
 /***************************************************** */
 /********************** Carousel meilleur vote ******************************* */
 /***************************************************** */
@@ -36,18 +50,11 @@ scrollContainer.addEventListener('mousemove', (e) => {
     scrollContainer.scrollLeft = scrollLeft - walk;
 });
 
+/***************************************************** */
 
-
-
-document.getElementById("year").textContent = new Date().getFullYear() + " Oumaro / MacSerie9";
-const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjhmMWUxM2VjYTc5OWQxMmVmNmNjZWViZjVjNjQ5MyIsInN1YiI6IjY0ZTBlNTE0MzcxMDk3MDEzOTQ4ZTM1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y_sZyDJi2cnH15uAdvP_VZDKBf0z9Kqa6zEqkh0PhfM';
-
-
-const headers = {
-    'Authorization': `Bearer ${apiKey}`,
-    'accept': 'application/json'
-};
+/**********************
+ * 
+ * **********  DATE EN FR ********************* */
 
 function dateFormatFr(date) { //convertit les dates en date française
 
@@ -68,6 +75,8 @@ function dateFormatFr(date) { //convertit les dates en date française
 
     return dateFrancaise;
 }
+
+/* **********  FILM POPULAIRE ********************* */
 function filmPopulaire() {
 
   var angle = 0;
@@ -92,7 +101,7 @@ function filmPopulaire() {
               let img = document.createElement('img');
               img.src = IMG_URL + results[i].poster_path;
               img.classList.add('img_populaire')
-                console.log(img);
+                
 
                 film_populaire.appendChild(img);
                 
@@ -110,6 +119,8 @@ function filmPopulaire() {
  * ******************
  * 
  */
+
+/* **********  FILM NOTE ********************* */
 
 function filmNote() {
     const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-FR&page=1&sort_by=popularity.desc&vote_average.gte=8&vote_average.lte=10';
@@ -155,6 +166,12 @@ function filmNote() {
         })
 
 }
+
+/* ******************
+ * 
+ */
+
+/* **********  SERIE TV ********************* */
 function getTvShow() {
     const url = "https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=fr-FR&page=1&sort_by=popularity.desc&with_original_language=fr";
     fetch(url, { method: 'GET', headers })
@@ -169,19 +186,11 @@ function getTvShow() {
 
                 if (film.poster_path !== null) {
 
-                    let card = document.createElement('div');
-                    card.classList.add('card', 'text-bg-dark');
+                    let img = document.createElement('img');
+                    img.src = IMG_URL + film.poster_path;
+                    img.classList.add('img_populaire')
 
-                    card.innerHTML = `
-                      <img src="${IMG_URL + film.poster_path}" class="card-img" alt="...">
-                      <div class="card-img-overlay" id="desc_card_tv">
-                        <h5 class="card-title">${film.original_name}</h5>
-                        <p >⭐️ ${film.vote_average}</p>
-                        <p class="card-text"><small class="text-body-white">${date}</small></p>
-                    </div>
-                    `;
-
-                    block_tv.appendChild(card);
+                    block_tv.appendChild(img);
                     //<p class="card-text d-flex flex-wrap">${film.overview}.</p>
 
                 }
@@ -189,6 +198,18 @@ function getTvShow() {
         })
 
 }
+
+
+/* ******************
+ * 
+ */
+
+/* ********** ACTEUR POPULAIRE ********************* */
+
+
+
+
+
 
 //APPEL DES FONCTIONS
 
@@ -201,4 +222,14 @@ getTvShow();
  <p style="font-weight:bold">${results[i].title}</p>
     <p>${date}</p>
     <p class="ml-2 bg-white p-sm-2">⭐️ ${results[i].vote_average}</p>
+
+
+    ************************
+
+       <img src="${IMG_URL + film.poster_path}" class="card-img" alt="...">
+                      <div id="desc_card_tv">
+                        <h5 class="card-title">${film.original_name}</h5>
+                        <p >⭐️ ${film.vote_average}</p>
+                        <p class="card-text"><small class="text-body-white">${date}</small></p>
+                    </div>
 */
