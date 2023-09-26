@@ -2,6 +2,7 @@
 let slider_carousel = document.querySelector('.carrousel');
 let block_tv = document.getElementById('block_tv');
 let film_populaire = document.getElementById('film_populaire');
+let slide_track = document.getElementById('slide-track');
 
 
 
@@ -79,12 +80,12 @@ function dateFormatFr(date) { //convertit les dates en date française
 /* **********  FILM POPULAIRE ********************* */
 function filmPopulaire() {
 
-  var angle = 0;
-  function galleryspin(sign) { 
-  spinner = document.querySelector("#spinner");
-  if (!sign) { angle = angle + 45; } else { angle = angle - 45; }
-  spinner.setAttribute("style","-webkit-transform: rotateY("+ angle +"deg); -moz-transform: rotateY("+ angle +"deg); transform: rotateY("+ angle +"deg);");
-  }
+    var angle = 0;
+    function galleryspin(sign) {
+        spinner = document.querySelector("#spinner");
+        if (!sign) { angle = angle + 45; } else { angle = angle - 45; }
+        spinner.setAttribute("style", "-webkit-transform: rotateY(" + angle + "deg); -moz-transform: rotateY(" + angle + "deg); transform: rotateY(" + angle + "deg);");
+    }
     const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=fr-US&page=1&sort_by=popularity.desc';
 
     fetch(url, { method: 'GET', headers })
@@ -95,19 +96,19 @@ function filmPopulaire() {
 
             // Parcours des données et affichage des identifiants (id) de chaque élément
             for (let i = 0; i < results.length; i++) {
-              let date = dateFormatFr(results[i].release_date);
-          
+                let date = dateFormatFr(results[i].release_date);
 
-              let img = document.createElement('img');
-              img.src = IMG_URL + results[i].poster_path;
-              img.classList.add('img_populaire')
-                
+
+                let img = document.createElement('img');
+                img.src = IMG_URL + results[i].poster_path;
+                img.classList.add('img_populaire')
+
 
                 film_populaire.appendChild(img);
-                
-          }
-          
-            
+
+            }
+
+
         })
         .catch(error => {
             console.error(error);
@@ -207,6 +208,33 @@ function getTvShow() {
 /* ********** ACTEUR POPULAIRE ********************* */
 
 
+function getActorDay() {  /*** affiche acteur de la semaine */
+
+    const url = "https://api.themoviedb.org/3/trending/person/day?language=fr-FR";
+    fetch(url, { method: 'GET', headers })
+        .then(response => response.json())
+        .then(data => {
+
+            const results = data.results;
+
+            results.forEach((actor, index) => {
+                let slide = document.createElement('div');
+                slide.classList.add('slide');
+
+                
+                // Assurez-vous que IMG_URL est défini correctement
+                slide.innerHTML = `<img src="${IMG_URL + actor.profile_path}" height="100" width="250" alt="" />
+                <p>${actor.name}</p> `;
+
+                slide_track.append(slide);
+
+            })
+        })
+
+
+
+
+}
 
 
 
@@ -216,6 +244,7 @@ function getTvShow() {
 filmPopulaire();
 filmNote()
 getTvShow();
+getActorDay();
 
 /*
 

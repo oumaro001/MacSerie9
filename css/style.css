@@ -255,7 +255,7 @@ footer{
 #film_populaire{
 
   display: flex;
-  background-color: red;
+  background-color: rgb(32, 32, 32);
   padding: 20px;
   overflow-x:scroll;
 }
@@ -263,6 +263,15 @@ footer{
 
 /***********************************************************/
 
+#Block_tendanceDay{
+
+    margin-top: -50px;
+}
+
+#Block_tendanceDay h2{ 
+
+    margin-bottom: -150px;
+}
 /* Mixin white-gradient */
 .slider::before,
 .slider::after {
@@ -288,11 +297,12 @@ footer{
 .slider {
     background: white;
     box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
-    height: 100px;
+    height: 400px;
     margin: auto;
     overflow: hidden;
     position: relative;
-    width: 960px;
+    width: 100%;
+    border: 5px solid rgb(235, 235, 235);
 }
 
 .slider::after {
@@ -306,13 +316,31 @@ footer{
     top: 0;
 }
 
-.slide-track {
+#slide-track {
     animation: scroll 40s linear infinite;
     display: flex;
     width: calc(250px * 14);
 }
 
 .slide {
-    height: 100px;
+    height: 400px;
+    width: 500px;
+}
+
+.slide img{
     width: 250px;
+    height: 100%;
+}
+
+.slide > p{
+
+    z-index: 1;
+    background-color: rgb(249, 55, 55);
+    position: absolute;
+    margin-top: -80px;
+    padding: 15px;
+    color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
 }
