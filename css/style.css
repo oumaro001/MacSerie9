@@ -255,8 +255,8 @@ footer{
 #film_populaire{
 
   display: flex;
-  background-color: rgb(32, 32, 32);
-  padding: 20px;
+  background-color: rgb(244, 73, 73);
+  padding: 50px;
   overflow-x:scroll;
 }
 

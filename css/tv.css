@@ -1,0 +1,63 @@
+body{
+    background-color: rgb(0, 0, 0) !important;
+    position: relative !important;
+}
+
+main{
+    margin-bottom: 200px;
+    
+}
+
+h1, h2{
+   font-size: 3em !important;
+   text-align: center;
+}
+
+footer{
+
+    border-top: 2px solid red;
+    padding: 20px 0px;
+ }
+
+/******************* NAVIGATION **********************************/
+ 
+
+
+ 
+nav {
+    background: #000000;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 20px 15px;
+    box-shadow: 0px 20px 40px rgba(18, 34, 64, 0.1);
+    width: 100%;
+    border-top: 4px solid red;
+    margin-bottom: 70px;
+ 
+  }
+  
+  nav >a{
+   text-decoration: none;
+   font-size: 1.2em;
+   color: white;
+  }
+  
+  nav >a:hover{
+   color: red;
+  }
+  
+ 
+ /*******************************************************************
+ *********************************************************************
+ *******************************************************************/
+ 
+ .tmdb_logo{
+     width: 7rem;
+ }
+ 
+
+
+ #block_TV{
+
+    margin-top: 100px;
+ }
