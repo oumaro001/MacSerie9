@@ -25,13 +25,13 @@ fetch(url, { method: 'GET', headers })
     
             // Création du corps de la carte (card-body)
             const cardBody = document.createElement('div');
-            cardBody.classList.add('card','bg-secondary');
+            cardBody.classList.add('card','bg-white');
             ///cardBody.style = 'margin:0% 23%; width:100%'
 
             const texteSansEspace = chaine.provider_name.replace(/\s/g, '');
     
-           cardBody.innerHTML = ` <div class="card-body"><a href="https://www.${texteSansEspace}.com/" target="_blank"><img src="${IMG_URL + chaine.logo_path}" alt="..." id="img_logo"></a>
-                                <p class="text-white">${chaine.provider_name}</p></div>`;
+           cardBody.innerHTML = ` <div class="card-body"><img src="${IMG_URL + chaine.logo_path}" alt="..." id="img_logo">
+                                <p class="text-dark">${chaine.provider_name}</p></div>`;
 
 
            section_chaine.appendChild(cardBody)

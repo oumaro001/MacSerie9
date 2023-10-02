@@ -27,7 +27,7 @@ nav {
 
 }
 
-nav >a{
+a{
  text-decoration: none;
  font-size: 1.2em;
  color: white;
@@ -59,7 +59,10 @@ footer{
    padding: 35px 0px;
 }
 
-.card_actor{
 
-   width: 40% !important;
+
+.card_actor_id{
+
+  width: 90%;
+  
 }

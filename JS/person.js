@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
              <h6 class="text-danger m-2">Film populaire</h6>
             <div class="d-flex flex-wrap justify-content-center text-white">
             ${filmActor.map(movie => `
-            <div class="m-2"><img src="${IMG_URL +movie.poster_path}" style="max-width:6em;border:1px solid red"></div>`
+            <div class="m-2"><img src="${IMG_URL +movie.poster_path}" style="max-width:6em"></div>`
             )}
             
             </div>

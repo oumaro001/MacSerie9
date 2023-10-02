@@ -60,4 +60,16 @@ nav {
  #block_TV{
 
     margin-top: 100px;
+   
+ }
+
+ .tv_id_block{
+
+    display: flex;
+    justify-content: center;
+ }
+
+ .card_tv{
+
+    width: 80%;
  }

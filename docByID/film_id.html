@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link href="../css/film.css" rel="stylesheet" />
+  <title>MacSerie9</title>
+</head>
+
+<body>
+
+  <main class="w-100">
+    <header class="d-flex justify-content-center"><img src="../images/logos.png" style="max-width: 13rem;">
+      <img
+        src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+        class="tmdb_logo">
+    </header>
+    <nav>
+      <a href="../index.html" class="navbar__item -orange">
+        <p>Accueil</p>
+      </a>
+      <a href="../searchFilm.html" class="navbar__item -navy-blue">
+        <p>Films</p>
+      </a>
+      <a href="../streamPage.html" class="navbar__item -yellow">
+        <p>Streaming</p>
+      </a>
+      <a href="../Tv.html" class="navbar__item -purple">
+        <p>TV</p>
+      </a>
+      <a href="../person.html" class="navbar__item -purple">
+        <p>Acteurs</p>
+      </a>
+    </nav>
+
+
+    <section id="block_film">
+    </section>
+
+</main>
+<footer>
+    <p class="text-white text-center">&copy; <span id="year"></span></p>
+</footer>
+
+</body>
+</html>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear() + " Oumaro / MacSerie9";
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
+const name = urlParams.get('name');
+
+console.log(id, name);
+
+let block_film = document.getElementById('block_film');
+
+
+
+const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiNjhmMWUxM2VjYTc5OWQxMmVmNmNjZWViZjVjNjQ5MyIsInN1YiI6IjY0ZTBlNTE0MzcxMDk3MDEzOTQ4ZTM1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.y_sZyDJi2cnH15uAdvP_VZDKBf0z9Kqa6zEqkh0PhfM';
+
+const headers = {
+    'Authorization': `Bearer ${apiKey}`,
+    'accept': 'application/json'
+};
+
+function dateFormatFr(date) { //convertit les dates en date française
+
+    let dateString = date;
+    let dateParts = dateString.split("-");
+    let year = dateParts[0];
+    let month = dateParts[1];
+    let day = dateParts[2];
+
+    // Tableaux des noms des mois en français
+    const moisEnFrancais = [
+        "janvier", "février", "mars", "avril", "mai", "juin",
+        "juillet", "août", "septembre", "octobre", "novembre", "décembre"
+    ];
+
+    let dateFrancaise = `${day} ${moisEnFrancais[month - 1]} ${year}`;
+
+
+    return dateFrancaise;
+}
+
+        block_film.innerHTML = " ";
+
+        const url = `https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=fr-FR`;
+
+        fetch(url, { method: 'GET', headers })
+            .then(response => response.json())
+            .then(data => {
+                const results = data.results;
+
+
+                results.forEach((film, index) => {
+
+
+                  if(id == film.id){
+
+                    if (film.poster_path !== null) {
+
+                        let date = dateFormatFr(film.release_date);
+
+                        //Création de la carte (card)
+                        let card = document.createElement('div');
+                        card.classList.add('card', 'm-3', 'card_film');
+
+                        //Création du corps de la carte (card-body)
+                        const cardBody = document.createElement('div');
+                        cardBody.classList.add('row', 'g-0');
+
+                        cardBody.innerHTML = `<div class="col-md-4" id="img_card">
+           <img src="${IMG_URL + film.poster_path}" class="img-fluid rounded-start" alt="${film.original_name}">
+         </div>
+         <div class="col-md-8">
+           <div class="card-body">
+             <h5 class="card-title">${film.title}</h5>
+             <h6 class="card-title">${film.original_title}</h6>
+             <p class="text-danger m-2">${date}</p>
+            <p class="ml-2 bg-white p-sm-2">⭐️ ${film.vote_average}</p>
+            <p>${film.overview}</p>
+
+           </div>
+         </div> `;
+
+                        console.log(cardBody);
+                        card.appendChild(cardBody);
+
+                        block_film.appendChild(card);
+
+
+                    }
+                }}
+                );
+
+
+
+
+            })
+   
+
+</script>
+

@@ -2,7 +2,8 @@
 let slider_carousel = document.querySelector('.carrousel');
 let block_tv = document.getElementById('block_tv');
 let film_populaire = document.getElementById('film_populaire');
-let slide_track = document.getElementById('slide-track');
+let slide_track = document.querySelector('.slide-track');
+let slide_track_streaming = document.querySelector('.slide-track_streaming');
 
 
 
@@ -99,10 +100,10 @@ function filmPopulaire() {
                 let date = dateFormatFr(results[i].release_date);
 
 
-                let img = document.createElement('img');
-                img.src = IMG_URL + results[i].poster_path;
-                img.classList.add('img_populaire')
+                let img = document.createElement('div');
+                img.classList.add('img_populaire');
 
+                img.innerHTML = `<a href="/docByID/film_id.html?id=${results[i].id}&name=${results[i].original_title}"><img src ="${IMG_URL + results[i].poster_path}"></a>`
 
                 film_populaire.appendChild(img);
 
@@ -138,6 +139,9 @@ function filmNote() {
                     let block_img = document.createElement('div');
                     block_img.classList.add('image-container');
 
+                    
+                    let liens = document.createElement('a');
+                    liens.href = `/docByID/film_id.html?id=${film.id}&name=${film.original_title}`
 
                     const img = document.createElement('img');
                     img.classList.add('img_note');
@@ -151,7 +155,8 @@ function filmNote() {
 
 
                     block_img.appendChild(block);
-                    block_img.appendChild(img);
+                    liens.append(img);
+                    block_img.appendChild(liens);
                     content.appendChild(block_img);
 
 
@@ -181,17 +186,22 @@ function getTvShow() {
 
             const results = data.results;
 
-            results.forEach((film, index) => {
+            results.forEach((serieTV, index) => {
 
-                let date = dateFormatFr(film.first_air_date)
+                let date = dateFormatFr(serieTV.first_air_date)
 
-                if (film.poster_path !== null) {
+                if (serieTV.poster_path !== null) {
+
+
+                    let liens = document.createElement('a');
+                    liens.href = `/docByID/tv_id.html?id=${serieTV.id}&name=${serieTV.original_name}`
 
                     let img = document.createElement('img');
-                    img.src = IMG_URL + film.poster_path;
-                    img.classList.add('img_populaire')
+                    img.src = IMG_URL + serieTV.poster_path;
+                    img.classList.add('img_tv')
 
-                    block_tv.appendChild(img);
+                    liens.append(img)
+                    block_tv.appendChild(liens);
                     //<p class="card-text d-flex flex-wrap">${film.overview}.</p>
 
                 }
@@ -206,7 +216,6 @@ function getTvShow() {
  */
 
 /* ********** ACTEUR POPULAIRE ********************* */
-
 
 function getActorDay() {  /*** affiche acteur de la semaine */
 
@@ -223,7 +232,7 @@ function getActorDay() {  /*** affiche acteur de la semaine */
 
                 
                 // Assurez-vous que IMG_URL est défini correctement
-                slide.innerHTML = `<img src="${IMG_URL + actor.profile_path}" height="100" width="250" alt="" />
+                slide.innerHTML = `<a href="/docByID/actor_id.html?id=${actor.id}&name=${actor.name}"><img src="${IMG_URL + actor.profile_path}" height="100" width="250" alt="" /></a>
                 <p>${actor.name}</p> `;
 
                 slide_track.append(slide);
@@ -231,12 +240,33 @@ function getActorDay() {  /*** affiche acteur de la semaine */
             })
         })
 
-
-
-
 }
 
 
+/*************CHAINE DE STREAMING ******************** */
+
+function getStreaming(){
+
+    const url = "https://api.themoviedb.org/3/watch/providers/tv?language=fr-FR&watch_region=fr";
+    fetch(url, { method: 'GET', headers })
+        .then(response => response.json())
+        .then(data => {
+
+            const results = data.results;
+
+            results.forEach((chaine, index) => {
+                let slide = document.createElement('div');
+                slide.classList.add('slide');
+
+                
+                slide.innerHTML = `<img src="${IMG_URL + chaine.logo_path}" height="100" width="500" alt="${chaine.provider_name}" />
+                `;
+
+                slide_track_streaming.append(slide);
+
+            })
+        })
+}
 
 
 //APPEL DES FONCTIONS
@@ -245,6 +275,7 @@ filmPopulaire();
 filmNote()
 getTvShow();
 getActorDay();
+getStreaming();
 
 /*
 
