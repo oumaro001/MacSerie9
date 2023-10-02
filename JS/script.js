@@ -103,7 +103,7 @@ function filmPopulaire() {
                 let img = document.createElement('div');
                 img.classList.add('img_populaire');
 
-                img.innerHTML = `<a href="/docByID/film_id.html?id=${results[i].id}&name=${results[i].original_title}"><img src ="${IMG_URL + results[i].poster_path}"></a>`
+                img.innerHTML = `<a href="film_id.html?id=${results[i].id}&name=${results[i].original_title}"><img src ="${IMG_URL + results[i].poster_path}"></a>`
 
                 film_populaire.appendChild(img);
 
@@ -141,7 +141,7 @@ function filmNote() {
 
                     
                     let liens = document.createElement('a');
-                    liens.href = `/docByID/film_id.html?id=${film.id}&name=${film.original_title}`
+                    liens.href = `film_id.html?id=${film.id}&name=${film.original_title}`
 
                     const img = document.createElement('img');
                     img.classList.add('img_note');
@@ -194,7 +194,7 @@ function getTvShow() {
 
 
                     let liens = document.createElement('a');
-                    liens.href = `/docByID/tv_id.html?id=${serieTV.id}&name=${serieTV.original_name}`
+                    liens.href = `tv_id.html?id=${serieTV.id}&name=${serieTV.original_name}`
 
                     let img = document.createElement('img');
                     img.src = IMG_URL + serieTV.poster_path;
@@ -232,7 +232,7 @@ function getActorDay() {  /*** affiche acteur de la semaine */
 
                 
                 // Assurez-vous que IMG_URL est défini correctement
-                slide.innerHTML = `<a href="/docByID/actor_id.html?id=${actor.id}&name=${actor.name}"><img src="${IMG_URL + actor.profile_path}" height="100" width="250" alt="" /></a>
+                slide.innerHTML = `<a href="actor_id.html?id=${actor.id}&name=${actor.name}"><img src="${IMG_URL + actor.profile_path}" height="100" width="250" alt="" /></a>
                 <p>${actor.name}</p> `;
 
                 slide_track.append(slide);
