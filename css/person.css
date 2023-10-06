@@ -66,3 +66,69 @@ footer{
   width: 90%;
   
 }
+
+
+#block_actor{
+
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 30px;
+  flex-flow: wrap;
+}
+
+@keyframes img_opacity {
+
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+
+.film_img{
+
+  margin: 20px;
+  
+}
+
+
+.film_img  img{
+
+  margin: 20px;
+  max-width: 15em !important;
+  max-height: 301em !important;
+  animation: img_opacity 2s;
+  border-radius: 20px;
+  border: 2px solid red;
+
+}
+
+.film_img{
+
+  border: 4px solid white;
+  border-radius: 20px;
+
+}
+
+.film_img:hover{
+
+  border: 4px solid red;
+  transform: scale(1.1);
+  transition: 1s;
+
+}
+
+.film_img img:hover{
+
+  border: 4px solid rgb(97, 97, 97);
+  transition: 1s;
+
+}
+
+.film_actor_id:hover{
+
+  border: 4px solid red;
+  border-radius: 10px;
+}

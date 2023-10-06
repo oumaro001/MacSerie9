@@ -29,41 +29,31 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 const results = data.results;
 
+                if (results.length == 0) {
+
+                    let p_error = document.createElement('div');
+                    p_error.classList.add('align-center', 'm-5');
+
+                    p_error.innerHTML = `<h2 class="text-white text-center">Aucun resultat 🤷🏻‍♂️</h2>
+                                        <img src="./images/not-found.gif">`
+
+                     block_actor.append(p_error)
+
+                }
+
                 results.forEach((actor, index) => {
 
                     if(actor.profile_path !== null){
 
+                        let img = document.createElement('div');
+                        img.classList.add('film_img');
 
-                    const filmActor = actor.known_for;
+                        img.innerHTML = `<a href="actor_id.html?id=${actor.id}&name=${actor.name}"><img src ="${IMG_URL + actor.profile_path}"></a>
+                                        <p class="text-white text-center">${actor.name}</p>`
 
-                    //Création de la carte (card)
-                    let card = document.createElement('div');
-                    card.classList.add('card', 'm-3','card_actor');
+                
 
-                    //Création du corps de la carte (card-body)
-                    const cardBody = document.createElement('div');
-                    cardBody.classList.add('row', 'g-0');
-
-                    cardBody.innerHTML = `<div class="col-md-4">
-           <img src="${IMG_URL + actor.profile_path}" class="img-fluid rounded-start" alt="${IMG_URL + actor.original_name}">
-         </div>
-         <div class="col-md-8">
-           <div class="card-body">
-             <h5 class="card-title">${actor.original_name}</h5>
-             <h6 class="text-danger m-2">Film populaire</h6>
-            <div class="d-flex flex-wrap justify-content-center text-white">
-            ${filmActor.map(movie => `
-            <div class="m-2"><img src="${IMG_URL +movie.poster_path}" style="max-width:6em"></div>`
-            )}
-            
-            </div>
-           </div>
-         </div> `;
-
-                    console.log(cardBody);
-                    card.appendChild(cardBody);
-
-                    block_actor.appendChild(card);
+                    block_actor.appendChild(img);
 
 
                     }}
