@@ -73,14 +73,10 @@ footer{
   
   border: 3px solid rgb(199, 199, 199);
   border-radius: 5px;
-  object-fit: cover;
   display: flex;
   justify-content: center;
-  object-fit: cover;
-  height: 100%;
   background-color: rgba(198, 196, 196, 0.7);
 
-  
 }
 
 
